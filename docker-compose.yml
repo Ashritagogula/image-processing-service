@@ -1,0 +1,39 @@
+services:
+  api:
+    build: ./api-service
+    container_name: api-service
+    ports:
+      - "5000:5000"
+    environment:
+      - AWS_ENDPOINT_URL=http://localstack:4566
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+      - S3_BUCKET_RAW=raw-images
+      - SQS_QUEUE_URL=http://localstack:4566/000000000000/image-queue
+    depends_on:
+      - localstack
+
+  worker:
+    build: ./worker-service
+    container_name: worker-service
+    environment:
+      - AWS_ENDPOINT_URL=http://localstack:4566
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+      - S3_BUCKET_RAW=raw-images
+      - S3_BUCKET_PROCESSED=processed-images
+      - SQS_QUEUE_URL=http://localstack:4566/000000000000/image-queue
+    depends_on:
+      - localstack
+
+  localstack:
+    image: localstack/localstack:3.0
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,sqs
+      - DEBUG=1
+      - AWS_DEFAULT_REGION=us-east-1
