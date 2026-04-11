@@ -87,14 +87,6 @@ Response:
   "url": "https://..."
 }
 ```
-## 🧪 Testing Flow
-Upload image via Postman
-Worker processes image
-Retrieve processed image via GET API
-
-## 📸 Sample Output
-Raw image stored in S3
-Thumbnail generated with watermark
 
 ## 💡 Key Concepts
 Event-driven architecture
