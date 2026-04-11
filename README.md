@@ -86,20 +86,24 @@ Response:
 {
   "url": "https://..."
 }
-🧪 Testing Flow
+```
+## 🧪 Testing Flow
 Upload image via Postman
 Worker processes image
 Retrieve processed image via GET API
-📸 Sample Output
+
+## 📸 Sample Output
 Raw image stored in S3
 Thumbnail generated with watermark
-💡 Key Concepts
+
+## 💡 Key Concepts
 Event-driven architecture
 Asynchronous processing
 Message queues (SQS)
 Idempotent workers
 Distributed system design
-🚀 Future Improvements
+
+## Future Improvements
 Dead Letter Queue (DLQ)
 Retry mechanism
 Monitoring & logging
